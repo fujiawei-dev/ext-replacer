@@ -5,5 +5,8 @@
 运行以下命令生成 `.vsix` 文件，然后在插件页面选择 从 `.vsix` 安装即可。
 
 ```
+npm install -g npm
+npm i vsce -g
+npm i yarn -g
 vsce package
 ```

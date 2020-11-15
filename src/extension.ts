@@ -19,7 +19,7 @@ export function insertSpace(context: vscode.ExtensionContext) {
 	const selection = editor.selection;
 	const ordText = document.getText(selection);
 
-	let regex = /([\w\.(),`<>-]+)/g;
+	let regex = /([\w\(\),`<>\-{}/\+\.\[\]""''“”‘’]+)/g;
 	let newText = ordText.replace(regex, " $1 ").replace(/ {2,}/g, " ");
 	newText = newText.replace(/ ?\n ?/g, "\n").replace(/^\s+|\s+$/g, "");
 	newText = newText.replace(/ ?， ?/g, "，").replace(/ ?。 ?/g, "。");
