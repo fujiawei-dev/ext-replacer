@@ -49,7 +49,7 @@ export function insertSpace(context: vscode.ExtensionContext): void {
 }
 
 // 中文标点符号转英文标点符号
-export function replaceSymbols(context: vscode.ExtensionContext): void {
+export function replaceSymbols(context: vscode.ExtensionContext) {
     const editor = vscode.window.activeTextEditor;
     console.log('dddd');
 
@@ -76,6 +76,8 @@ export function replaceSymbols(context: vscode.ExtensionContext): void {
     newText = newText.replace(/！/g, "!");
     //将￥转换为$
     newText = newText.replace(/￥/g, "$");
+    //将；转换为;
+    newText = newText.replace(/；/g, ";");
 
     editor.edit((editBuilder) => {
         editBuilder.replace(selection, newText);
