@@ -1,60 +1,72 @@
 {
-	"name": "replacer",
-	"displayName": "replacer",
-	"description": "replace extension",
-	"version": "0.1.0",
-	"publisher": "cxfans",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/cxfans/replacer.git"
-	},
-	"engines": {
-		"vscode": "^1.49.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:replacer.insertSpace"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "replacer.insertSpace",
-				"title": "Insert Space"
-			}
-		],
-		"menus": {
-			"editor/context": [
-				{
-					"when": "editorFocus",
-					"command": "replacer.insertSpace",
-					"group": "navigation"
-				}
-			]
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "yarn run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint src --ext ts",
-		"watch": "tsc -watch -p ./",
-		"pretest": "yarn run compile && yarn run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.49.0",
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.0",
-		"@types/node": "^14.0.27",
-		"eslint": "^7.9.0",
-		"@typescript-eslint/eslint-plugin": "^4.1.1",
-		"@typescript-eslint/parser": "^4.1.1",
-		"glob": "^7.1.6",
-		"mocha": "^8.1.3",
-		"typescript": "^4.0.2",
-		"vscode-test": "^1.4.0"
-	},
-	"dependencies": {}
+  "name": "replacer",
+  "displayName": "replacer",
+  "description": "replace extension",
+  "version": "0.1.1",
+  "publisher": "Rustle Karl",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fujiawei-dev/replacer.git"
+  },
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:replacer.insertSpace",
+    "onCommand:replacer.replaceSymbols"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "replacer.insertSpace",
+        "title": "Insert Space"
+      },
+      {
+        "command": "replacer.replaceSymbols",
+        "title": "Replace Symbols"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorFocus",
+          "command": "replacer.insertSpace",
+          "group": "navigation"
+        },
+        {
+          "when": "editorFocus",
+          "command": "replacer.replaceSymbols",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.16",
+    "@types/vscode": "^1.64.0",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.8.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.0",
+    "typescript": "^4.5.5",
+    "vscode-test": "^1.4.0",
+    "vscode": "^0.9.9"
+  },
+  "dependencies": {
+  }
 }
