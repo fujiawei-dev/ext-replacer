@@ -51,8 +51,6 @@ export function insertSpace(context: vscode.ExtensionContext): void {
 // 中文标点符号转英文标点符号
 export function replaceSymbols(context: vscode.ExtensionContext) {
     const editor = vscode.window.activeTextEditor;
-    console.log('dddd');
-
     if (!editor) {
         return;
     }
@@ -60,12 +58,10 @@ export function replaceSymbols(context: vscode.ExtensionContext) {
     const selection = editor.selection;
     const ordText = document.getText(selection);
 
-    console.log(ordText);
-
     // 将单引号‘’都转换成'，将双引号“”都转换成"
     let newText = ordText.replace(/[’|‘]/g, "'").replace(/[“|”]/g, "\"");
-    // 将中括号【】转换成[]，将大括号｛｝转换成{}
-    newText = newText.replace(/【/g, "[").replace(/】/g, "]").replace(/｛/g, "{").replace(/｝/g, "}");
+    // 将小括号（）转换成()，将中括号【】转换成[]，将大括号｛｝转换成{}
+    newText = newText.replace(/（/g, "(").replace(/）/g, ")").replace(/【/g, "[").replace(/】/g, "]").replace(/｛/g, "{").replace(/｝/g, "}");
     // 将逗号，转换成,，将：转换成:
     newText = newText.replace(/，/g, ",").replace(/：/g, ":");
     //将《转换为<，将》转换为>
@@ -78,6 +74,8 @@ export function replaceSymbols(context: vscode.ExtensionContext) {
     newText = newText.replace(/￥/g, "$");
     //将；转换为;
     newText = newText.replace(/；/g, ";");
+    //将×转换为x
+    newText = newText.replace(/ ?× ?/g, "x");
 
     editor.edit((editBuilder) => {
         editBuilder.replace(selection, newText);
