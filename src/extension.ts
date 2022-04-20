@@ -29,17 +29,25 @@ export function insertSpace(context: vscode.ExtensionContext): void {
     if (!editor) {
         return;
     }
+
     const document = editor.document;
     const selection = editor.selection;
-    const ordText = document.getText(selection);
 
-    let regex = /([\w(),`<>\-{}/+.\[\]'"“”#$]+)/g;
-    let newText = ordText.replace(regex, " $1 ").replace(/ {2,}/g, " ");
+    let newText = document.getText(selection);
 
     newText = newText.replace(/（）/g, "()");
+
+    // 去除孤立括号
     newText = newText.replace(/（/g, "");
     newText = newText.replace(/）/g, "");
 
+    // 去除标题中的数字序列
+    newText = newText.replace(/\d+\.[\d.]+/g, "");
+
+    // OCR 容易将 () 识别成 O
+    newText = newText.replace(/O/g, "()");
+
+    newText = newText.replace(/([\w(),`<>\-{}/+.\[\]'"“”#$]+)/g, " $1 ")
     newText = newText.replace(/ ?\n ?/g, "\n").replace(/^\s+|\s+$/g, "");
     newText = newText.replace(/ ?， ?/g, "，").replace(/ ?。 ?/g, "。");
     newText = newText.replace(/ ?、 ?/g, "、").replace(/ ?： ?/g, "：");
@@ -47,8 +55,12 @@ export function insertSpace(context: vscode.ExtensionContext): void {
     newText = newText.replace(/ ?（ ?/g, "（").replace(/ ?） ?/g, "）");
     newText = newText.replace(/# ?/g, "#").replace(/\$ ?/g, "$");
     newText = newText.replace(/ ,/g, ",").replace(/ \./g, ".");
-
     newText = newText.replace(/(#{2,}) ?/g, "$1 ");
+
+    // Markdown 中两个换行符才能换行显示
+    newText = newText.replace(/\n+/g, "\n\n");
+
+    newText = newText.replace(/ {2,}/g, " ");
 
     editor.edit((editBuilder) => {
         editBuilder.replace(selection, newText);
@@ -61,12 +73,14 @@ export function replaceSymbols(context: vscode.ExtensionContext) {
     if (!editor) {
         return;
     }
+
     const document = editor.document;
     const selection = editor.selection;
-    const ordText = document.getText(selection);
+
+    let newText = document.getText(selection);
 
     // 将单引号‘’都转换成'，将双引号“”都转换成"
-    let newText = ordText.replace(/[’|‘]/g, "'").replace(/[“|”]/g, "\"");
+    newText = newText.replace(/[’|‘]/g, "'").replace(/[“|”]/g, "\"");
     // 将小括号（）转换成()，将中括号【】转换成[]，将大括号｛｝转换成{}
     newText = newText.replace(/（/g, "(").replace(/）/g, ")").replace(/【/g, "[").replace(/】/g, "]").replace(/｛/g, "{").replace(/｝/g, "}");
     // 将逗号，转换成,，将：转换成:
