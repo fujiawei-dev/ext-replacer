@@ -2,14 +2,14 @@
   "name": "replacer",
   "displayName": "replacer",
   "description": "replace extension",
-  "version": "0.1.2",
-  "publisher": "Rustle Karl",
+  "version": "0.1.4",
+  "publisher": "rustlekarl",
   "repository": {
     "type": "git",
     "url": "git://github.com/fujiawei-dev/replacer.git"
   },
   "engines": {
-    "vscode": "^1.64.0"
+    "vscode": "^1.63.0"
   },
   "categories": [
     "Other"
@@ -57,7 +57,7 @@
     "@types/glob": "^7.2.0",
     "@types/mocha": "^9.1.0",
     "@types/node": "^17.0.16",
-    "@types/vscode": "^1.64.0",
+    "@types/vscode": "^1.63.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^8.8.0",

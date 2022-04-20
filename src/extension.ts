@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-02-06 19:34:01
  * @LastEditors: Rustle Karl
- * @LastEditTime: 2022.02.08 13:14:06
+ * @LastEditTime: 2022.04.08 20:56:41
  */
 import * as vscode from 'vscode';
 
@@ -35,6 +35,11 @@ export function insertSpace(context: vscode.ExtensionContext): void {
 
     let regex = /([\w(),`<>\-{}/+.\[\]'"“”#$]+)/g;
     let newText = ordText.replace(regex, " $1 ").replace(/ {2,}/g, " ");
+
+    newText = newText.replace(/（）/g, "()");
+    newText = newText.replace(/（/g, "");
+    newText = newText.replace(/）/g, "");
+
     newText = newText.replace(/ ?\n ?/g, "\n").replace(/^\s+|\s+$/g, "");
     newText = newText.replace(/ ?， ?/g, "，").replace(/ ?。 ?/g, "。");
     newText = newText.replace(/ ?、 ?/g, "、").replace(/ ?： ?/g, "：");
@@ -42,6 +47,8 @@ export function insertSpace(context: vscode.ExtensionContext): void {
     newText = newText.replace(/ ?（ ?/g, "（").replace(/ ?） ?/g, "）");
     newText = newText.replace(/# ?/g, "#").replace(/\$ ?/g, "$");
     newText = newText.replace(/ ,/g, ",").replace(/ \./g, ".");
+
+    newText = newText.replace(/(#{2,}) ?/g, "$1 ");
 
     editor.edit((editBuilder) => {
         editBuilder.replace(selection, newText);
@@ -67,7 +74,7 @@ export function replaceSymbols(context: vscode.ExtensionContext) {
     //将《转换为<，将》转换为>
     newText = newText.replace(/《/g, "<").replace(/》/g, ">");
     //将句号。转换成.，将问号？转换为?
-    newText = newText.replace(/。/g, ".").replace(/？/g, "?");
+    newText = newText.replace(/[。|．]/g, ".").replace(/？/g, "?");
     //将！转换为!
     newText = newText.replace(/！/g, "!");
     //将￥转换为$
@@ -76,6 +83,14 @@ export function replaceSymbols(context: vscode.ExtensionContext) {
     newText = newText.replace(/；/g, ";");
     //将×转换为x
     newText = newText.replace(/ ?× ?/g, "x");
+    //将％转换为%
+    newText = newText.replace(/ ?％ ?/g, "%");
+    //将 —转换为-
+    newText = newText.replace(/ ?— ?/g, "-");
+    //将 —转换为-
+    newText = newText.replace(/ ?～ ?/g, "~");
+    //将［转换为[，将］转换为]
+    newText = newText.replace(/［/g, "[").replace(/］/g, "]");
 
     editor.edit((editBuilder) => {
         editBuilder.replace(selection, newText);
