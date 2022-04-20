@@ -37,6 +37,8 @@ export function insertSpace(context: vscode.ExtensionContext): void {
 
     newText = newText.replace(/（）/g, "()");
 
+    newText = newText.replace(/\n口/g, "\n- ");
+
     // 去除孤立括号
     newText = newText.replace(/（/g, "");
     newText = newText.replace(/）/g, "");
@@ -45,7 +47,13 @@ export function insertSpace(context: vscode.ExtensionContext): void {
     newText = newText.replace(/\d+\.[\d.]+/g, "");
 
     // OCR 容易将 () 识别成 O
-    newText = newText.replace(/O/g, "()");
+    newText = newText.replace(/([a-z])O/g, "$1()");
+
+    // 尖括号加引用
+    newText = newText.replace(/(<.+?>)/g, "`$1`");
+
+    // 负号
+    newText = newText.replace(/ ?一 ?(\d+)/g, " -$1");
 
     newText = newText.replace(/([\w(),`<>\-{}/+.\[\]'"“”#$]+)/g, " $1 ")
     newText = newText.replace(/ ?\n ?/g, "\n").replace(/^\s+|\s+$/g, "");
