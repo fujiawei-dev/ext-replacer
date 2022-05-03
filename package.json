@@ -61,7 +61,7 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "eslint src --ext ts",
-		"build": "rm *.vsix && vsce package",
+		"build": "rm *.vsix || true && vsce package",
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
