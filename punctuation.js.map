@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "file": "punctuation.js",
+    "sourceRoot": "",
+    "sources": [
+        "punctuation.ts"
+    ],
+    "names": [],
+    "mappings": ""
+}

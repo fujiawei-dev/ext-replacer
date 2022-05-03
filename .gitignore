@@ -1,0 +1,18 @@
+### VisualStudioCode template
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+.vscode-test/
+
+# Local History for Visual Studio Code
+.history/
+
+### JavaScript / TypeScript template
+out/
+node_modules/
+*.vsix
+*.lock

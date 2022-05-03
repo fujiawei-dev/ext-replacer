@@ -1,0 +1,80 @@
+{
+	"name": "replacer",
+	"displayName": "replacer",
+	"description": "Personal text replacement tool.",
+	"version": "0.2.0",
+	"publisher": "rustlekarl",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/fujiawei-dev/replacer.git"
+	},
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:replacer.insertSpace",
+		"onCommand:replacer.replacePunctuation",
+		"onCommand:replacer.repairRecognizingText"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "replacer.insertSpace",
+				"title": "在中英文之间插入空格"
+			},
+			{
+				"command": "replacer.replacePunctuation",
+				"title": "将全角标点替换成半角"
+			},
+			{
+				"command": "replacer.repairRecognizingText",
+				"title": "修复识别文本"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorFocus",
+					"command": "replacer.insertSpace",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.replacePunctuation",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.repairRecognizingText",
+					"group": "navigation"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"build": "rm *.vsix && vsce package",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.66.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
+		"eslint": "^8.14.0",
+		"glob": "^8.0.1",
+		"mocha": "^9.2.2",
+		"typescript": "^4.6.4",
+		"@vscode/test-electron": "^2.1.3"
+	}
+}
