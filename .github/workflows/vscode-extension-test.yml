@@ -16,7 +16,9 @@ jobs:
         run: |
           npm ci
           npm install --global vsce
+          apt update && apt install -y xvfb
+          /usr/bin/Xvfb :99 -screen 0 1024x768x24 &
       - name: Test extension
-        run: npm test || true
+        run: DISPLAY=:99.0 npm test
       - name: Build extension
         run: npm run build
