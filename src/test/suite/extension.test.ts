@@ -11,6 +11,7 @@ suite('Extension Test Suite', () => {
 
 	test('Test replacer.insertSpace', () => {
 		assert.strictEqual("中文 English 中文", replacer.insertSpace("中文English中文"));
+		assert.strictEqual("字符 \"\\0\" 为空", replacer.insertSpace("字符\"\\0\"为空"));
 	});
 
 	test('Test replacer.replacePunctuation', () => {

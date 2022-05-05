@@ -3,7 +3,7 @@ export function insertSpace(newText: string): string {
     newText = newText.
         replace(/(<.+?>)/g, "`$1`").	// 尖括号加引用
         replace(/ ?[-一] ?(\d+)/g, " -$1").	// 负号
-        replace(/([\w(),`<>\-{}/+.\[\]'"“”#$]+)/g, " $1 ").	// 连续英文
+        replace(/([\w(),`<>\-{}/+.\[\]'"“”#$\\]+)/g, " $1 ").	// 连续英文
         replace(/ ?\n ?/g, "\n").// 行首尾空白符
         replace(/^\s+|\s+$/g, "").// 所选内容首尾空白
 
