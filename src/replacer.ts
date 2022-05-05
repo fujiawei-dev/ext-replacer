@@ -94,3 +94,11 @@ export function removeAllSpaces(newText: string): string {
 export function convertToUnixPathStyle(newText: string): string {
     return newText.replace(/\\/g, "/");
 }
+
+// 英文单词间的空格替换为下划线
+export function replaceSpacesWithUnderscores(newText: string): string {
+    // https://stackoverflow.com/questions/24522046/how-to-match-text-which-the-part-of-it-is-already-matched-previous
+    return newText.
+        replace(/([a-zA-Z]) ([a-zA-Z])/g, "$1_$2").
+        replace(/([a-zA-Z]) ([a-zA-Z])/g, "$1_$2");
+}

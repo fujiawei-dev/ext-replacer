@@ -2,7 +2,7 @@
 	"name": "replacer",
 	"displayName": "replacer",
 	"description": "Personal text replacement tool.",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"publisher": "rustlekarl",
 	"repository": {
 		"type": "git",
@@ -41,6 +41,10 @@
 			{
 				"command": "replacer.convertToUnixPathStyle",
 				"title": "转换为 Unix 路径风格"
+			},
+			{
+				"command": "replacer.replaceSpacesWithUnderscores",
+				"title": "空格替换为下划线"
 			}
 		],
 		"menus": {
@@ -68,6 +72,11 @@
 				{
 					"when": "editorFocus",
 					"command": "replacer.convertToUnixPathStyle",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.replaceSpacesWithUnderscores",
 					"group": "navigation"
 				}
 			]

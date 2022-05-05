@@ -59,6 +59,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 		context.subscriptions.push(disposable);
 	}
+
+	{
+		let disposable = vscode.commands.registerCommand('replacer.replaceSpacesWithUnderscores', () => {
+			// The code you place here will be executed every time your command is executed
+			replaceSpacesWithUnderscoresCmd(context);
+		});
+
+		context.subscriptions.push(disposable);
+	}
 }
 
 // this method is called when your extension is deactivated
@@ -144,5 +153,21 @@ export function convertToUnixPathStyleCmd(context: vscode.ExtensionContext) {
 
 	editor.edit((editBuilder) => {
 		editBuilder.replace(selection, replacer.convertToUnixPathStyle(newText));
+	});
+}
+
+export function replaceSpacesWithUnderscoresCmd(context: vscode.ExtensionContext) {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+
+	const document = editor.document;
+	const selection = editor.selection;
+
+	let newText = document.getText(selection);
+
+	editor.edit((editBuilder) => {
+		editBuilder.replace(selection, replacer.replaceSpacesWithUnderscores(newText));
 	});
 }

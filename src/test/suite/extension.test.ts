@@ -25,6 +25,11 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("A/B/C/D", replacer.convertToUnixPathStyle("A\\B\\C\\D"));
 	});
 
+	test('Test replacer.replaceSpacesWithUnderscores', () => {
+		assert.strictEqual("A_B_C_D", replacer.replaceSpacesWithUnderscores("A B C D"));
+		assert.strictEqual("中文English中文", replacer.replaceSpacesWithUnderscores("中文English中文"));
+	});
+
 	test('Test replacer.repairRecognizingText', () => {
 		assert.strictEqual("中文 English 中文", replacer.repairRecognizingText("中文English中文"));
 		assert.strictEqual("3. UDP 协议", replacer.repairRecognizingText("3.UDP协议"));
