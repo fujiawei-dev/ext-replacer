@@ -21,5 +21,6 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("中文 English 中文", repairRecognizingText("中文English中文"));
 		assert.strictEqual("3. UDP 协议", repairRecognizingText("3.UDP协议"));
 		assert.strictEqual("SOCK_DGRAM", repairRecognizingText("SOCK DGRAM"));
+		assert.strictEqual("sendto() 函数", repairRecognizingText("sendto（0函数"));
 	});
 });

@@ -67,15 +67,13 @@ export function replacePunctuation(newText: string): string {
 // 修复识别文本
 export function repairRecognizingText(newText: string): string {
     newText = newText.
-        replace(/（）/g, "()").
+        // 括号
+        replace(/（）/g, "() ").
+        replace(/([a-z])[（O0]{1,2}([^a-zA-Z])/g, "$1() $2").
 
         // 列表
         replace(/\n口/g, "\n- ").
         replace(/^口/g, "\n- ").
-
-        // 括号
-        replace(/([a-z])（/g, "$1()").
-        replace(/([a-z])[O0]/g, "$1()").
 
         // 列表序号后插入空格
         replace(/(\d\.)([^\d])/g, "$1 $2").
