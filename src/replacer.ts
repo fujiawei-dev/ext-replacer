@@ -77,6 +77,9 @@ export function repairRecognizingText(newText: string): string {
         replace(/([a-z])（/g, "$1()").
         replace(/([a-z])[O0]/g, "$1()").
 
+        // 列表序号后插入空格
+        replace(/(\d\.)([^\d])/g, "$1 $2").
+
         // 去除标题中的数字序列
         replace(/# ?[\d.]+/g, "# ");
 

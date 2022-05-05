@@ -19,5 +19,6 @@ suite('Extension Test Suite', () => {
 
 	test('Test replacer.repairRecognizingText', () => {
 		assert.strictEqual("中文 English 中文", repairRecognizingText("中文English中文"));
+		assert.strictEqual("3. UDP 协议", repairRecognizingText("3.UDP协议"));
 	});
 });
