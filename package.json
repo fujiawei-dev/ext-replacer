@@ -2,7 +2,7 @@
 	"name": "replacer",
 	"displayName": "replacer",
 	"description": "Personal text replacement tool.",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"publisher": "rustlekarl",
 	"repository": {
 		"type": "git",
@@ -33,6 +33,14 @@
 			{
 				"command": "replacer.repairRecognizingText",
 				"title": "修复识别文本"
+			},
+			{
+				"command": "replacer.removeAllSpaces",
+				"title": "清除全部空白符"
+			},
+			{
+				"command": "replacer.convertToUnixPathStyle",
+				"title": "转换为 Unix 路径风格"
 			}
 		],
 		"menus": {
@@ -50,6 +58,16 @@
 				{
 					"when": "editorFocus",
 					"command": "replacer.repairRecognizingText",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.removeAllSpaces",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.convertToUnixPathStyle",
 					"group": "navigation"
 				}
 			]

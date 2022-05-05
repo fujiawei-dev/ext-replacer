@@ -80,9 +80,17 @@ export function repairRecognizingText(newText: string): string {
 
         // 全大写英文间的空格改下划线
         replace(/([A-Z]) ([A-Z])/g, "$1_$2").
-        
+
         // 去除标题中的数字序列
         replace(/# ?[\d.]+/g, "# ");
 
     return insertSpace(newText);
+}
+
+export function removeAllSpaces(newText: string): string {
+    return newText.replace(/\s/g, "");
+}
+
+export function convertToUnixPathStyle(newText: string): string {
+    return newText.replace(/\\/g, "/");
 }
