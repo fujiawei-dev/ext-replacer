@@ -37,6 +37,7 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("sendto() 函数", replacer.repairRecognizingText("sendto（0函数"));
 		assert.strictEqual("send()/sendto().", replacer.repairRecognizingText("send（）/sendto（."));
 		assert.strictEqual("用 write() 函数", replacer.repairRecognizingText("用writeO）函数"));
+		assert.strictEqual("(c) 路径", replacer.repairRecognizingText("（c() 路径"));
 
 		assert.strictEqual("repairRecognizingText", replacer.repairRecognizingText("repairRecognizingText"));
 	});
