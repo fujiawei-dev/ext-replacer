@@ -80,6 +80,9 @@ export function repairRecognizingText(newText: string): string {
         // 列表序号后插入空格
         replace(/(\d\.)([^\d])/g, "$1 $2").
 
+        // 全大写英文间的空格改下划线
+        replace(/([A-Z]) ([A-Z])/g, "$1_$2").
+        
         // 去除标题中的数字序列
         replace(/# ?[\d.]+/g, "# ");
 
