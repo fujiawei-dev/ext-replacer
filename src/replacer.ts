@@ -68,8 +68,8 @@ export function replacePunctuation(newText: string): string {
 export function repairRecognizingText(newText: string): string {
     newText = newText.
         // 括号
-        replace(/（）/g, "() ").
-        replace(/([a-z])[（O0]{1,2}([^a-zA-Z])/g, "$1() $2").
+        replace(/（）/g, "()").
+        replace(/([a-z])[（O0]{1,2}([^a-zA-Z])/g, "$1()$2").
 
         // 列表
         replace(/\n口/g, "\n- ").
