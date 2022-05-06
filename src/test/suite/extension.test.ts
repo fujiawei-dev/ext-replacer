@@ -15,7 +15,7 @@ suite('Extension Test Suite', () => {
 	});
 
 	test('Test replacer.replacePunctuation', () => {
-		assert.strictEqual("[];',./", replacer.replacePunctuation("【】；’，。/"));
+		assert.strictEqual("sv[1]", replacer.replacePunctuation("sv 【 1 】 "));
 	});
 
 	test('Test replacer.removeAllSpaces', () => {

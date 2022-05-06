@@ -38,24 +38,24 @@ export function replacePunctuation(newText: string): string {
         replace(/[“|”]/g, "\"").
 
         // 括号
-        replace(/（/g, "(").
-        replace(/）/g, ")").
-        replace(/【/g, "[").
-        replace(/】/g, "]").
-        replace(/［/g, "[").
-        replace(/］/g, "]").
-        replace(/｛/g, "{").
-        replace(/｝/g, "}").
-        replace(/《/g, "<").
-        replace(/》/g, ">").
+        replace(/ ?（ ?/g, "(").
+        replace(/ ?） ?/g, ")").
+        replace(/ ?【 ?/g, "[").
+        replace(/ ?】 ?/g, "]").
+        replace(/ ?［ ?/g, "[").
+        replace(/ ?］ ?/g, "]").
+        replace(/ ?｛ ?/g, "{").
+        replace(/ ?｝ ?/g, "}").
+        replace(/ ?《 ?/g, "<").
+        replace(/ ?》 ?/g, ">").
 
-        replace(/，/g, ",").
-        replace(/：/g, ":").
-        replace(/[。|．]/g, ".").
-        replace(/？/g, "?").
-        replace(/！/g, "!").
-        replace(/￥/g, "$").
-        replace(/；/g, ";").
+        replace(/ ?， ?/g, ", ").
+        replace(/ ?： ?/g, ": ").
+        replace(/ ?[。|．] ?/g, ". ").
+        replace(/ ?？ ?/g, "? ").
+        replace(/ ?！ ?/g, "! ").
+        replace(/ ?￥ ?/g, "$").
+        replace(/ ?； ?/g, "; ").
         replace(/ ?％ ?/g, "%").
         replace(/ ?— ?/g, "-").
         replace(/ ?～ ?/g, "~").
