@@ -39,6 +39,7 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("send()/sendto().", replacer.repairRecognizingText("send（）/sendto（."));
 		assert.strictEqual("用 write() 函数", replacer.repairRecognizingText("用writeO）函数"));
 		assert.strictEqual("(c) 路径", replacer.repairRecognizingText("（c() 路径"));
+		assert.strictEqual("进程 A 中关闭 sv[0]，在进程 B 中关闭 sv[1]", replacer.repairRecognizingText("进程A中关闭sv【0】，在进程B中关闭sv【1】"));
 
 		assert.strictEqual("repairRecognizingText", replacer.repairRecognizingText("repairRecognizingText"));
 	});

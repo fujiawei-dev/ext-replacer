@@ -71,6 +71,8 @@ export function repairRecognizingText(newText: string): string {
         replace(/（）/g, "()").
         replace(/（([a-z])\(?[)）]?/g, "($1)").
         replace(/([a-z])[（）O0]{1,2}([^a-zA-Z])/g, "$1()$2").
+        replace(/ ?【 ?/g, "[").
+        replace(/ ?】 ?/g, "]").
 
         // 列表
         replace(/\n口/g, "\n- ").
