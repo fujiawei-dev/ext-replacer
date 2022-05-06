@@ -69,7 +69,7 @@ export function repairRecognizingText(newText: string): string {
     newText = newText.
         // 括号
         replace(/（）/g, "()").
-        replace(/（([a-z])\(?[)）]?/g, "($1)").
+        replace(/（([a-zA-Z ]+)\(?[)）]?/g, "($1)").
         replace(/([a-z])[（）O0]{1,2}([^a-zA-Z])/g, "$1()$2").
         replace(/ ?【 ?/g, "[").
         replace(/ ?】 ?/g, "]").
