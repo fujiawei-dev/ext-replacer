@@ -15,6 +15,7 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("%H 中文 %% 中文", replacer.insertSpace("%H中文%%中文"));
 		assert.strictEqual("| -------- | -------- |", replacer.insertSpace("| ------------ | ------------ |"));
 		assert.strictEqual("-A 大小", replacer.insertSpace("-A  　大小"));
+		assert.strictEqual("-h `< 行数 >` 指定视窗的缓冲区行数", replacer.insertSpace("-h   `< 行数 >`  　指定视窗的缓冲区行数"));
 	});
 
 	test('Test replacer.replacePunctuation', () => {

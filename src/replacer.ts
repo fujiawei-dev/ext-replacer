@@ -1,8 +1,11 @@
 // 在中英文之间插入空格，处理中英文混合问题
 export function insertSpace(newText: string): string {
     newText = newText.
-        replace(/[\b\t\v\f\r\u00A0\u2028\u2029\u3000\uFEFF]/g, " ").
+        replace(/[\b\t\v\f\r\u00A0\u2028\u2029\u3000\uFEFF]/g, " ").// 不可见字符
+
         replace(/(<.+?>)/g, "`$1`").	// 尖括号加引用
+        replace(/``+/g, "`").// 多余尖括号
+
         replace(/ ?[-一] ?(\d+)/g, " -$1").	// 负号
         replace(/([\w(),`<>\-{}/+.\[\]'"“”#$%\\:]+)/g, " $1 ").	// 连续英文数字以及半角标点符号
         replace(/ ?\n ?/g, "\n").// 行首尾空白符
