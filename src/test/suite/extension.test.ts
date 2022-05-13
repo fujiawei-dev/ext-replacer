@@ -13,6 +13,7 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("中文 English 中文", replacer.insertSpace("中文English中文"));
 		assert.strictEqual("字符 \"\\0\" 为空", replacer.insertSpace("字符\"\\0\"为空"));
 		assert.strictEqual("%H 中文 %% 中文", replacer.insertSpace("%H中文%%中文"));
+		assert.strictEqual("| -------- | -------- |", replacer.insertSpace("| ------------ | ------------ |"));
 	});
 
 	test('Test replacer.replacePunctuation', () => {

@@ -25,6 +25,7 @@ export function insertSpace(newText: string): string {
         replace(/ ?\$ ?/g, " $").
         replace(/(#{2,}) ?/g, "$1 ").// 标题
         replace(/([^|])\n+/g, "$1\n\n").	// 换行
+        replace(/--------+/g, "--------").	// 表格
         replace(/ {2,}/g, " ");// 多余空格
 
     return newText;
