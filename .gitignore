@@ -16,3 +16,6 @@ out/
 node_modules/
 *.vsix
 *.lock
+
+# WebStorm template
+.idea/

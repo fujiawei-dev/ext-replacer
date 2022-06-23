@@ -49,4 +49,8 @@ suite('Extension Test Suite', () => {
 
 		assert.strictEqual("repairRecognizingText", replacer.repairRecognizingText("repairRecognizingText"));
 	});
+
+	test('Test replacer.replaceNoteTopAttributes', () => {
+		assert.strictEqual(replacer.replaceNoteTopAttributes("---\ndate: 2022-06-22T15:04:12+08:00\nauthor: \"Rustle Karl\"\n\ntitle: \"submodule 子模块\"\nurl:  \"posts/git/docs/submodule\"  # 永久链接\ntags: [ \"Git\", \"README\" ]  # 标签\nseries: [ \"Git 学习笔记\" ]  # 系列\ncategories: [ \"学习笔记\" ]  # 分类\n\ntoc: true  # 目录\ndraft: false  # 草稿\n---"), "---\ndate: 2022-06-22T15:04:12+08:00\nauthor: \"Rustle Karl\"\n\ntitle: \"submodule 子模块\"\nurl:  \"posts/git/docs/submodule\"\ntags: [ \"Git\", \"README\" ]\ncategories: [ \"Git 学习笔记\" ]\n\ntoc: true\ndraft: false\n---");
+	});
 });

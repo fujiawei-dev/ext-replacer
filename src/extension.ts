@@ -68,6 +68,15 @@ export function activate(context: vscode.ExtensionContext) {
 
 		context.subscriptions.push(disposable);
 	}
+
+	{
+		let disposable = vscode.commands.registerCommand('replacer.replaceNoteTopAttributes', () => {
+			// The code you place here will be executed every time your command is executed
+			replaceNoteTopAttributesCmd(context);
+		});
+
+		context.subscriptions.push(disposable);
+	}
 }
 
 // this method is called when your extension is deactivated
@@ -169,5 +178,21 @@ export function replaceSpacesWithUnderscoresCmd(context: vscode.ExtensionContext
 
 	editor.edit((editBuilder) => {
 		editBuilder.replace(selection, replacer.replaceSpacesWithUnderscores(newText));
+	});
+}
+
+export function replaceNoteTopAttributesCmd(context: vscode.ExtensionContext) {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+
+	const document = editor.document;
+	const selection = editor.selection;
+
+	let newText = document.getText(selection);
+
+	editor.edit((editBuilder) => {
+		editBuilder.replace(selection, replacer.replaceNoteTopAttributes(newText));
 	});
 }

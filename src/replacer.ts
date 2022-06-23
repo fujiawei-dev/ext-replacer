@@ -110,3 +110,29 @@ export function replaceSpacesWithUnderscores(newText: string): string {
         replace(/([a-zA-Z]) ([a-zA-Z])/g, "$1_$2").
         replace(/([a-zA-Z]) ([a-zA-Z])/g, "$1_$2");
 }
+
+// 替换笔记顶部属性
+export function replaceNoteTopAttributes(newText: string): string {
+    let newTextList: Array<string> = [];
+
+    // 逐行读取
+    newText.split("\n").forEach((line: string) => {
+        if (line.startsWith("categories")) {
+            return;
+        }
+
+        if (line.startsWith("series")) {
+            line = line.replace("series", "categories");
+        }
+
+        // 去除尾部注释
+        line = line.replace(/#.*$/g, "");
+
+        // 去除首尾空白符
+        line = line.replace(/^\s+|\s+$/g, "");
+
+        newTextList.push(line);
+    });
+
+    return newTextList.join("\n");
+}
