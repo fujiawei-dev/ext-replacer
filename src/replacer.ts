@@ -69,6 +69,22 @@ export function replacePunctuation(newText: string): string {
     return newText;
 }
 
+// 将半角标点替换成全角
+export function replacePunctuationReversed(newText: string): string {
+    newText = newText.
+        replace(/\. ?/g, "。").
+        replace(/\, ?/g, "，").
+        replace(/\: ?/g, "：").
+        replace(/\? ?/g, "？").
+        replace(/\! ?/g, "！").
+        replace(/\; ?/g, "；").
+        replace(/\% ?/g, "％").
+        replace(/\~ ?/g, "～");
+
+    return newText;
+}
+
+
 // 修复识别文本
 export function repairRecognizingText(newText: string): string {
     newText = newText.

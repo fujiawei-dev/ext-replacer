@@ -34,6 +34,15 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	{
+		let disposable = vscode.commands.registerCommand('replacer.replacePunctuationReversed', () => {
+			// The code you place here will be executed every time your command is executed
+			replacePunctuationReversedCmd(context);
+		});
+
+		context.subscriptions.push(disposable);
+	}
+
+	{
 		let disposable = vscode.commands.registerCommand('replacer.repairRecognizingText', () => {
 			// The code you place here will be executed every time your command is executed
 			repairRecognizingTextCmd(context);
@@ -112,6 +121,22 @@ export function replacePunctuationCmd(context: vscode.ExtensionContext) {
 
 	editor.edit((editBuilder) => {
 		editBuilder.replace(selection, replacer.replacePunctuation(newText));
+	});
+}
+
+export function replacePunctuationReversedCmd(context: vscode.ExtensionContext) {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor) {
+		return;
+	}
+
+	const document = editor.document;
+	const selection = editor.selection;
+
+	let newText = document.getText(selection);
+
+	editor.edit((editBuilder) => {
+		editBuilder.replace(selection, replacer.replacePunctuationReversed(newText));
 	});
 }
 

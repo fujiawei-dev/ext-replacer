@@ -2,7 +2,7 @@
 	"name": "replacer",
 	"displayName": "replacer",
 	"description": "Personal text replacement tool.",
-	"version": "0.2.18",
+	"version": "0.2.19",
 	"publisher": "rustlekarl",
 	"repository": {
 		"type": "git",
@@ -17,6 +17,7 @@
 	"activationEvents": [
 		"onCommand:replacer.insertSpace",
 		"onCommand:replacer.replacePunctuation",
+		"onCommand:replacer.replacePunctuationReversed",
 		"onCommand:replacer.repairRecognizingText",
 		"onCommand:replacer.removeAllSpaces",
 		"onCommand:replacer.convertToUnixPathStyle",
@@ -33,6 +34,10 @@
 			{
 				"command": "replacer.replacePunctuation",
 				"title": "将全角标点替换成半角"
+			},
+			{
+				"command": "replacer.replacePunctuationReversed",
+				"title": "将半角标点替换成全角"
 			},
 			{
 				"command": "replacer.repairRecognizingText",
@@ -65,6 +70,11 @@
 				{
 					"when": "editorFocus",
 					"command": "replacer.replacePunctuation",
+					"group": "navigation"
+				},
+				{
+					"when": "editorFocus",
+					"command": "replacer.replacePunctuationReversed",
 					"group": "navigation"
 				},
 				{
