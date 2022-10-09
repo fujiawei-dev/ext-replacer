@@ -16,6 +16,10 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("| -------- | -------- |", replacer.insertSpace("| ------------ | ------------ |"));
 		assert.strictEqual("-A 大小", replacer.insertSpace("-A  　大小"));
 		assert.strictEqual("-h `< 行数 >` 指定视窗的缓冲区行数", replacer.insertSpace("-h   `< 行数 >`  　指定视窗的缓冲区行数"));
+		assert.strictEqual("中文 1-1 中文", replacer.insertSpace("中文1-1中文"));
+		assert.strictEqual("中文 -1 中文", replacer.insertSpace("中文-1中文"));
+		assert.strictEqual("English-1 中文", replacer.insertSpace("English-1中文"));
+		assert.strictEqual("表示为 1.36×2^-4", replacer.insertSpace("表示为1.36×2^-4"));
 	});
 
 	test('Test replacer.replacePunctuation', () => {

@@ -6,8 +6,8 @@ export function insertSpace(newText: string): string {
         replace(/(<.+?>)/g, "`$1`").	// 尖括号加引用
         replace(/``+/g, "`").// 多余尖括号
 
-        replace(/ ?[-一] ?(\d+)/g, " -$1").	// 负号
-        replace(/([\w(),`<>\-{}/+.\[\]'"“”#$%\\:]+)/g, " $1 ").	// 连续英文数字以及半角标点符号
+        replace(/([\w\d×^.]*) ?[-一] ?([\d\w]+)/g, " $1-$2").	// 负号
+        replace(/([\w(),`<>\-{}/+.\[\]'"“”#$%\\:×^～]+)/g, " $1 ").	// 连续英文数字以及半角标点符号
         replace(/ ?\n ?/g, "\n").// 行首尾空白符
         replace(/^\s+|\s+$/g, "").// 所选内容首尾空白
 
@@ -25,6 +25,7 @@ export function insertSpace(newText: string): string {
         replace(/ +,/g, ",").
         replace(/ +\./g, ".").
         replace(/# ?/g, "#").
+        replace(/ ?[：:]= ?/g, " := ").
 
         replace(/ ?\$ ?/g, " $").
         replace(/(#{2,}) ?/g, "$1 ").// 标题
