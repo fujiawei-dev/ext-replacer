@@ -14,8 +14,8 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("字符 \"\\0\" 为空", replacer.insertSpace("字符\"\\0\"为空"));
 		assert.strictEqual("%H 中文 %% 中文", replacer.insertSpace("%H中文%%中文"));
 		assert.strictEqual("| -------- | -------- |", replacer.insertSpace("| ------------ | ------------ |"));
-		assert.strictEqual("-A 大小", replacer.insertSpace("-A  　大小"));
-		assert.strictEqual("-h `< 行数 >` 指定视窗的缓冲区行数", replacer.insertSpace("-h   `< 行数 >`  　指定视窗的缓冲区行数"));
+		assert.strictEqual("A 大小", replacer.insertSpace("A  　大小"));
+		assert.strictEqual("- -h `< 行数 >` 指定视窗的缓冲区行数", replacer.insertSpace("- -h   `< 行数 >`  　指定视窗的缓冲区行数"));
 		assert.strictEqual("中文 1-1 中文", replacer.insertSpace("中文1-1中文"));
 		assert.strictEqual("中文 -1 中文", replacer.insertSpace("中文-1中文"));
 		assert.strictEqual("English-1 中文", replacer.insertSpace("English-1中文"));
@@ -47,9 +47,11 @@ suite('Extension Test Suite', () => {
 		assert.strictEqual("send()/sendto().", replacer.repairRecognizingText("send（）/sendto（."));
 		assert.strictEqual("用 write() 函数", replacer.repairRecognizingText("用writeO）函数"));
 		assert.strictEqual("(c) 路径", replacer.repairRecognizingText("（c() 路径"));
-		assert.strictEqual("进程 A 中关闭 sv[0]，在进程 B 中关闭 sv[1]", replacer.repairRecognizingText("进程A中关闭sv【0】，在进程B中关闭sv【1】"));
+		assert.strictEqual("进程 A 中关闭 `sv[0]`，在进程 B 中关闭 `sv[1]`", replacer.repairRecognizingText("进程A中关闭sv【0】，在进程B中关闭sv【1】"));
 		assert.strictEqual("目的 MAC 地址为 00:00:00:00:00:02", replacer.repairRecognizingText("目的MAC地址为00:00:00:00:00:02"));
 		assert.strictEqual("可聚集全球单播地址 (Aggregatable Global Unicast Address)。", replacer.repairRecognizingText("可聚集全球单播地址（Aggregatable Global Unicast Address）。"));
+		assert.strictEqual("- 1\n- 2", replacer.repairRecognizingText("·1\n·2"));
+		assert.strictEqual("将 `ht[1]` 设置为 `ht[0]`", replacer.repairRecognizingText("将ht[1]设置为ht[0]"));
 
 		assert.strictEqual("repairRecognizingText", replacer.repairRecognizingText("repairRecognizingText"));
 	});

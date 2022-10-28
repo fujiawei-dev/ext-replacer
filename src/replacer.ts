@@ -6,7 +6,7 @@ export function insertSpace(newText: string): string {
         replace(/(<.+?>)/g, "`$1`").	// 尖括号加引用
         replace(/``+/g, "`").// 多余尖括号
 
-        replace(/([\w\d×^.]*) ?[-一] ?([\d\w]+)/g, " $1-$2").	// 负号
+        replace(/(^[^-][\w\d×^.]*) ?[-一] ?([\d\w]+)/g, " $1-$2").	// 负号
         replace(/([\w(),`<>\-{}/+.\[\]'"“”#$%\\:×^～]+)/g, " $1 ").	// 连续英文数字以及半角标点符号
         replace(/ ?\n ?/g, "\n").// 行首尾空白符
         replace(/^\s+|\s+$/g, "").// 所选内容首尾空白
@@ -31,6 +31,9 @@ export function insertSpace(newText: string): string {
         replace(/(#{2,}) ?/g, "$1 ").// 标题
         replace(/([^|])\n+/g, "$1\n\n").	// 换行
         replace(/--------+/g, "--------").	// 表格
+        replace(/^- ?/g, "- ").    // 列表
+        replace(/\n\n- /g, "\n- ").    // 列表
+        replace(/\( +\)/g, "()").
         replace(/ {2,}/g, " ");// 多余空格
 
     return newText;
@@ -99,9 +102,18 @@ export function repairRecognizingText(newText: string): string {
         // 列表
         replace(/\n口/g, "\n- ").
         replace(/^口/g, "\n- ").
+        replace(/\n·/g, "\n- ").
+        replace(/^·/g, "\n- ").
+        replace(/\n◎/g, "\n- ").
+        replace(/^◎/g, "\n- ").
+        replace(/\n（?(\d+)[)）]/g, "\n$1. ").
+        replace(/^（?(\d+)[)）]/g, "$1. ").
 
         // 列表序号后插入空格
         replace(/(\d\.)([^\d])/g, "$1 $2").
+
+        // 索引下标
+        replace(/([a-zA-Z]+\[\d+\])/g, "`$1`").
 
         // 全大写英文间的空格改下划线
         replace(/([A-Z]) ([A-Z])/g, "$1_$2").
